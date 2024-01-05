@@ -1,0 +1,27 @@
+def transform_string(s):
+    result = list(s)
+    changed_indices = set()
+    for i in range(len(result)):
+        if i in changed_indices:
+            continue
+        
+        if i > 0 and ord(result[i]) % 2 !=0:
+            decrement = ord(result[i]) % 5
+            if ord(result[i - 1]) - decrement >= 0:
+                result[i - 1] = chr(ord(result[i - 1]) - decrement)
+                changed_indices.add(i - 1)
+            else:
+                result[i - 1] = chr(83)
+        elif i < len(result) - 1 and ord(result[i]) % 2 == 0:
+            increment = ord(result[i]) % 7
+            if ord(result[i + 1]) + increment <= 127 :
+                result[i +1] = chr(ord(result[i+1]) + increment)
+                changed_indices.add(i + 1)
+            else:    
+                result[i + 1] = chr(83)
+            
+    return ''.join(result)                    
+# values
+string = 'sHQen}'
+result = transform_string(string)
+print("transformed string :",result)                    
