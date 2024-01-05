@@ -1,0 +1,13 @@
+def shortest_substrings(s,x):
+    substrings= []
+    for i in range(len(s)):
+        for j in range(i + x, len(s)):
+            if s[i] == s[j]:
+                substrings.append(s[i:j + 1])
+    shortest_length =  min(len(sub) for sub in substrings)
+    shortest_subs =[sub for sub in substrings if len(sub) == shortest_length ]
+    return shortest_subs
+# trail
+string = "abccdbacca"
+number = 3
+print(shortest_substrings(string,number))
